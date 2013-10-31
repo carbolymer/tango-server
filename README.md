@@ -1,4 +1,4 @@
-tango-server
+Tango CPU Temperature Device Server
 ============
 
-tango-server
+Serwer w tango (http://www.tango-controls.org/) mierzacy temperature CPU
