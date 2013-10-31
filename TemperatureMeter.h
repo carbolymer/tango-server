@@ -39,6 +39,8 @@
 #define TemperatureMeter_H
 
 #include <tango.h>
+#include <time.h>
+#include <cmath>
 
 
 /*----- PROTECTED REGION END -----*/	//	TemperatureMeter.h

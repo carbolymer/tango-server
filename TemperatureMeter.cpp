@@ -200,6 +200,20 @@ void TemperatureMeter::read_temperature(Tango::Attribute &attr)
 	DEBUG_STREAM << "TemperatureMeter::read_temperature(Tango::Attribute &attr) entering... " << endl;
 	/*----- PROTECTED REGION ID(TemperatureMeter::read_temperature) ENABLED START -----*/
 	//	Set the attribute value
+
+  time_t timer;
+  struct tm y2k;
+  double seconds;
+
+  y2k.tm_hour = 0;   y2k.tm_min = 0; y2k.tm_sec = 0;
+  y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;
+
+  time(&timer);  /* get current time; same as: timer = time(NULL)  */
+
+  seconds = difftime(timer,mktime(&y2k));
+
+  *attr_temperature_read = 60 + 20*sin(seconds);
+
 	attr.set_value(attr_temperature_read);
 	
 	/*----- PROTECTED REGION END -----*/	//	TemperatureMeter::read_temperature
@@ -235,7 +249,8 @@ Tango::DevBoolean TemperatureMeter::start()
 	DEBUG_STREAM << "TemperatureMeter::Start()  - " << device_name << endl;
 	/*----- PROTECTED REGION ID(TemperatureMeter::start) ENABLED START -----*/
 	
-	//	Add your own code
+	set_state(Tango::ON);
+	argout = true;
 	
 	/*----- PROTECTED REGION END -----*/	//	TemperatureMeter::start
 	return argout;
@@ -254,7 +269,8 @@ Tango::DevBoolean TemperatureMeter::stop()
 	DEBUG_STREAM << "TemperatureMeter::Stop()  - " << device_name << endl;
 	/*----- PROTECTED REGION ID(TemperatureMeter::stop) ENABLED START -----*/
 	
-	//	Add your own code
+	set_state(Tango::OFF);
+	argout = true;
 	
 	/*----- PROTECTED REGION END -----*/	//	TemperatureMeter::stop
 	return argout;

@@ -469,22 +469,22 @@ void TemperatureMeterClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	temperatureAttrib	*temperature = new temperatureAttrib();
 	Tango::UserDefaultAttrProp	temperature_prop;
 	//	description	not set for temperature
-	//	label	not set for temperature
-	//	unit	not set for temperature
-	//	standard_unit	not set for temperature
-	//	display_unit	not set for temperature
+	temperature_prop.set_label("Temperatura");
+	temperature_prop.set_unit("C");
+	temperature_prop.set_standard_unit("C");
+	temperature_prop.set_display_unit("C");
 	//	format	not set for temperature
-	//	max_value	not set for temperature
-	//	min_value	not set for temperature
-	//	max_alarm	not set for temperature
-	//	min_alarm	not set for temperature
-	//	max_warning	not set for temperature
-	//	min_warning	not set for temperature
+	temperature_prop.set_max_value("1000");
+	temperature_prop.set_min_value("-276");
+	temperature_prop.set_max_alarm("90");
+	temperature_prop.set_min_alarm("0");
+	temperature_prop.set_max_warning("60");
+	temperature_prop.set_min_warning("40");
 	//	delta_t	not set for temperature
 	//	delta_val	not set for temperature
 	
 	temperature->set_default_properties(temperature_prop);
-	//	Not Polled
+	temperature->set_polling_period(3000);
 	temperature->set_disp_level(Tango::OPERATOR);
 	//	Not Memorized
 	att_list.push_back(temperature);
