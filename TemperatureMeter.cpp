@@ -139,7 +139,7 @@ void TemperatureMeter::init_device()
 	/*----- PROTECTED REGION ID(TemperatureMeter::init_device_before) ENABLED START -----*/
 	
 	//	Initialization before get_device_property() call
-	
+	set_state(Tango::OFF);
 	/*----- PROTECTED REGION END -----*/	//	TemperatureMeter::init_device_before
 	
 	//	No device property to be read from database
