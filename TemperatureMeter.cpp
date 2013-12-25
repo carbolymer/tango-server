@@ -42,6 +42,7 @@ static const char *RcsId = "$Id:  $";
 
 #include <TemperatureMeter.h>
 #include <TemperatureMeterClass.h>
+#include "temperature_check.cpp"
 
 /*----- PROTECTED REGION END -----*/	//	TemperatureMeter.cpp
 
@@ -212,7 +213,8 @@ void TemperatureMeter::read_temperature(Tango::Attribute &attr)
 
   seconds = difftime(timer,mktime(&y2k));
 
-  *attr_temperature_read = 60 + 20*sin(seconds);
+  // *attr_temperature_read = 60 + 20*sin(seconds);
+  *attr_temperature_read = GetTemperature();
 
 	attr.set_value(attr_temperature_read);
 	
