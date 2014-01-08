@@ -29,6 +29,9 @@ int GetTemperature() {
     if(sscanf(cBuffer, "temp1: +%f°C", &temperature) > 0) {
       break;
     }
+    if(sscanf(cBuffer, "Physical id 0: +%f°C", &temperature) > 0) {
+      break;
+    }
   }
   return (int) temperature;
 }
